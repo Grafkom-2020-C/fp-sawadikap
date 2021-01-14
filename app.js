@@ -3,19 +3,19 @@ function main() {
   const renderer = new THREE.WebGLRenderer({canvas});
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const fov = 20;
+  const fov = 30;
   const aspect = 2;  // the canvas default
   const near = 0.1;
   const far = 200;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 0, 0);
+  camera.position.set(10, 10, 20);
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.target.set(0, 5, 0);
   controls.update();
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('black');
+  scene.background = new THREE.Color('lightblue');
 
 
   {
@@ -35,20 +35,12 @@ function main() {
     scene.add(light.target);
   }
 
-  function dumpObject(obj, lines = [], isLast = true, prefix = '') {
-    const localPrefix = isLast ? '└─' : '├─';
-    lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
-    const newPrefix = prefix + (isLast ? '  ' : '│ ');
-    const lastNdx = obj.children.length - 1;
-    obj.children.forEach((child, ndx) => {
-      const isLast = ndx === lastNdx;
-      dumpObject(child, lines, isLast, newPrefix);
-    });
-    return lines;
-  }
+  const manager = new THREE.LoadingManager();
+  manager.onLoad = init;
+
   
   function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
-    const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+    const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.3;
     const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
     const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
     // compute a unit vector that points in the direction the camera is now
@@ -78,7 +70,6 @@ function main() {
     gltfLoader.load('/resources/models/land_final_gltf.glb', (gltf) => {
       const root = gltf.scene;
       scene.add(root);
-      console.log(dumpObject(root).join('\n'));
 
       // compute the box that contains all the stuff
       // from root and below
@@ -97,6 +88,88 @@ function main() {
     });
   }
 
+  const models = {
+    pig:    { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Pig.gltf' },
+    cow:    { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Cow.gltf' },
+    llama:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Llama.gltf' },
+    pug:    { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Pug.gltf' },
+    sheep:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Sheep.gltf' },
+    zebra:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Zebra.gltf' },
+    horse:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Horse.gltf' },
+};
+  {
+    const gltfLoader = new THREE.GLTFLoader(manager);
+    for (const model of Object.values(models)) {
+      gltfLoader.load(model.url, (gltf) => {
+        model.gltf = gltf;
+      });
+    }
+  }
+
+  function prepModelsAndAnimations() {
+    Object.values(models).forEach(model => {
+      const animsByName = {};
+      model.gltf.animations.forEach((clip) => {
+        animsByName[clip.name] = clip;
+      });
+      model.animations = animsByName;
+    });
+  }
+
+  const mixerInfos = [];
+
+  function init() {
+    prepModelsAndAnimations();
+
+    Object.values(models).forEach((model, ndx) => {
+      const clonedScene = THREE.SkeletonUtils.clone(model.gltf.scene);
+      const root = new THREE.Object3D();
+      root.add(clonedScene);
+      scene.add(root);
+      root.position.x = (ndx - 3) * 9;
+      root.position.z = (ndx - 20);
+      root.position.y = -1;
+
+      const mixer = new THREE.AnimationMixer(clonedScene);
+      const actions = Object.values(model.animations).map((clip) => {
+        return mixer.clipAction(clip);
+      });
+      const mixerInfo = {
+        mixer,
+        actions,
+        actionNdx: -1,
+      };
+      mixerInfos.push(mixerInfo);
+      playNextAction(mixerInfo);
+    });
+  }
+
+  function playNextAction(mixerInfo) {
+    const {actions, actionNdx} = mixerInfo;
+    const nextActionNdx = (actionNdx + 1) % actions.length;
+    mixerInfo.actionNdx = nextActionNdx;
+    actions.forEach((action, ndx) => {
+      const enabled = ndx === nextActionNdx;
+      action.enabled = enabled;
+      if (enabled) {
+        action.play();
+      }
+    });
+  }
+
+  const webs = ['https://en.wikipedia.org/wiki/Pig','https://en.wikipedia.org/wiki/Cow','https://en.wikipedia.org/wiki/Llama','https://en.wikipedia.org/wiki/Pug','https://en.wikipedia.org/wiki/Sheep','https://en.wikipedia.org/wiki/Zebra','https://en.wikipedia.org/wiki/Horse'];
+
+  window.addEventListener('keydown', (e) => {
+    const mixerInfo = mixerInfos[e.keyCode - 49];
+    console.log(e.keyCode - 49);
+    if (!mixerInfo) {
+      return;
+    }
+    playNextAction(mixerInfo);
+
+    location.href = webs[e.keyCode - 49];
+  });
+
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
     const width = canvas.clientWidth;
@@ -108,11 +181,20 @@ function main() {
     return needResize;
   }
 
-  function render() {
+  let then = 0;
+  function render(now) {
+    now *= 0.001;  // convert to sections
+    const deltaTime = now - then;
+    then = now;
+
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
+    }
+
+    for (const {mixer} of mixerInfos) {
+      mixer.update(deltaTime);
     }
 
     renderer.render(scene, camera);
