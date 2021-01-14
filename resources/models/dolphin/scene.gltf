@@ -1,0 +1,377 @@
+{
+  "accessors": [
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1545,
+      "max": [
+        36.433757781982422,
+        6.171600341796875,
+        19.603496551513672
+      ],
+      "min": [
+        -12.464960098266602,
+        -14.281747817993164,
+        -17.126960754394531
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 18540,
+      "componentType": 5126,
+      "count": 1545,
+      "max": [
+        0.9530760645866394,
+        0.9908825159072876,
+        0.97638148069381714
+      ],
+      "min": [
+        -0.98871695995330811,
+        -0.98467153310775757,
+        -0.94908493757247925
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1545,
+      "max": [
+        1544
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 37080,
+      "componentType": 5126,
+      "count": 1212,
+      "max": [
+        36.433757781982422,
+        6.1348810195922852,
+        19.603496551513672
+      ],
+      "min": [
+        -12.464960098266602,
+        -14.281747817993164,
+        -9.9338750839233398
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 51624,
+      "componentType": 5126,
+      "count": 1212,
+      "max": [
+        0.9817047119140625,
+        0.99334144592285156,
+        0.99647641181945801
+      ],
+      "min": [
+        -0.97920322418212891,
+        -1,
+        -0.99647641181945801
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 6180,
+      "componentType": 5125,
+      "count": 1212,
+      "max": [
+        1211
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 66168,
+      "componentType": 5126,
+      "count": 51,
+      "max": [
+        0.87761753797531128,
+        1.0164153575897217,
+        0.95031231641769409
+      ],
+      "min": [
+        -0.82906395196914673,
+        -9.2836894989013672,
+        -0.98504418134689331
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 66780,
+      "componentType": 5126,
+      "count": 51,
+      "max": [
+        0.62315887212753296,
+        0.94741827249526978,
+        0.81206643581390381
+      ],
+      "min": [
+        -0.64943772554397583,
+        0.4883715808391571,
+        -0.78361570835113525
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 11028,
+      "componentType": 5125,
+      "count": 51,
+      "max": [
+        50
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Danny D (https://sketchfab.com/filip116)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/dolphin-f14180c0b1914581accec0bf0f9c29ed",
+      "title": "Dolphin"
+    },
+    "generator": "Sketchfab-7.91.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 11232,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 67392,
+      "byteOffset": 11232,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 78624,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "DolphinMain",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0066347400000000001,
+          0.11669300000000001,
+          0.55959300000000001,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.97198833059089951
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "DolphinWhite",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.45626699999999998,
+          0.80882299999999996,
+          0.940384,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.83377779520120388
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "DolphinBlack",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.00279495,
+          0.0030954099999999998,
+          0.00301556,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.99932341792278978
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "dolphin_DolphinMain_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "dolphin_DolphinWhite_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 4,
+            "POSITION": 3
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "dolphin_DolphinBlack_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6
+          },
+          "indices": 8,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "2ec5ff2b46764427befc22651f474c39.fbx"
+    },
+    {
+      "children": [
+        4
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        5,
+        6,
+        7
+      ],
+      "matrix": [
+        -30.771154732881868,
+        7.1909109228644796,
+        3.3077121464955272e-07,
+        -0,
+        3.7243090267922651e-07,
+        7.4307353321314922e-07,
+        18.492399215698224,
+        -0,
+        -4.2656426076207223,
+        -18.253424374499783,
+        8.1937954792281843e-07,
+        -0,
+        453.34130859375,
+        -119.19287109375,
+        -100.01565551757812,
+        1
+      ],
+      "name": "dolphin"
+    },
+    {
+      "mesh": 0,
+      "name": "dolphin_DolphinMain_0"
+    },
+    {
+      "mesh": 1,
+      "name": "dolphin_DolphinWhite_0"
+    },
+    {
+      "mesh": 2,
+      "name": "dolphin_DolphinBlack_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
+

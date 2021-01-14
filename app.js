@@ -3,7 +3,7 @@ function main() {
   const renderer = new THREE.WebGLRenderer({canvas});
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const fov = 30;
+  const fov = 40;
   const aspect = 2;  // the canvas default
   const near = 0.1;
   const far = 200;
@@ -20,7 +20,7 @@ function main() {
 
   {
     const skyColor = 0xB1E1FF;  // light blue
-    const groundColor = 0xB97A20;  // brownish orange
+    const groundColor = 0x000000;  // black
     const intensity = 1;
     const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
     scene.add(light);
@@ -96,6 +96,10 @@ function main() {
     sheep:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Sheep.gltf' },
     zebra:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Zebra.gltf' },
     horse:  { url: 'https://threejsfundamentals.org/threejs/resources/models/animals/Horse.gltf' },
+    shark:  { url: '/resources/models/shark.glb' },
+    whale:  { url: '/resources/models/whale.glb' },
+    mantaRay:  { url: '/resources/models/mantaRay.glb' },
+    bird:  { url: '/resources/models/simple_bird/scene.gltf' },
 };
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
@@ -129,6 +133,16 @@ function main() {
       root.position.x = (ndx - 3) * 9;
       root.position.z = (ndx - 20);
       root.position.y = -1;
+      if(ndx>6){
+        root.position.x = (ndx-10) * 9;
+        root.position.z = (ndx+20);
+        root.position.y = -4;
+      }
+      if(ndx>9){
+        root.position.x = (ndx-8) * 9;
+        root.position.y = 20;
+        root.position.z = (ndx-20);
+      }
 
       const mixer = new THREE.AnimationMixer(clonedScene);
       const actions = Object.values(model.animations).map((clip) => {
@@ -157,11 +171,10 @@ function main() {
     });
   }
 
-  const webs = ['https://en.wikipedia.org/wiki/Pig','https://en.wikipedia.org/wiki/Cow','https://en.wikipedia.org/wiki/Llama','https://en.wikipedia.org/wiki/Pug','https://en.wikipedia.org/wiki/Sheep','https://en.wikipedia.org/wiki/Zebra','https://en.wikipedia.org/wiki/Horse'];
+  const webs = ['https://en.wikipedia.org/wiki/Pig','https://en.wikipedia.org/wiki/Cow','https://en.wikipedia.org/wiki/Llama','https://en.wikipedia.org/wiki/Pug','https://en.wikipedia.org/wiki/Sheep','https://en.wikipedia.org/wiki/Zebra','https://en.wikipedia.org/wiki/Horse','https://en.wikipedia.org/wiki/Shark', 'https://en.wikipedia.org/wiki/Whale', 'https://en.wikipedia.org/wiki/Manta_ray'];
 
   window.addEventListener('keydown', (e) => {
     const mixerInfo = mixerInfos[e.keyCode - 49];
-    console.log(e.keyCode - 49);
     if (!mixerInfo) {
       return;
     }
