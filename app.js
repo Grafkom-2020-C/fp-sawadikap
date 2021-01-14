@@ -140,14 +140,14 @@ function main() {
         root.position.y = -4;
       }
       if(ndx>9){
-        root.position.x = (ndx-8) * 9;
+        root.position.x = (ndx-6) * 9;
         root.position.y = 20;
         root.position.z = (ndx-20);
       }
       if(ndx>10){
         root.position.x = (ndx-8) * 9;
-        root.position.y = -3;
-        root.position.z = (-200);
+        root.position.y = 0;
+        root.position.z = (-225);
       }
 
       const mixer = new THREE.AnimationMixer(clonedScene);
