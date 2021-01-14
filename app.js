@@ -67,7 +67,7 @@ function main() {
 
   {
     const gltfLoader = new THREE.GLTFLoader();
-    gltfLoader.load('/resources/models/land_final_gltf.glb', (gltf) => {
+    gltfLoader.load('/resources/models/land_final2_gltf.glb', (gltf) => {
       const root = gltf.scene;
       scene.add(root);
 
