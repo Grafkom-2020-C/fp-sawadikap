@@ -100,6 +100,7 @@ function main() {
     whale:  { url: '/resources/models/whale.glb' },
     mantaRay:  { url: '/resources/models/mantaRay.glb' },
     bird:  { url: '/resources/models/simple_bird/scene.gltf' },
+    castle: { url: '/resources/models/castle/scene.gltf' },
 };
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
@@ -142,6 +143,11 @@ function main() {
         root.position.x = (ndx-8) * 9;
         root.position.y = 20;
         root.position.z = (ndx-20);
+      }
+      if(ndx>10){
+        root.position.x = (ndx-8) * 9;
+        root.position.y = -3;
+        root.position.z = (-200);
       }
 
       const mixer = new THREE.AnimationMixer(clonedScene);
