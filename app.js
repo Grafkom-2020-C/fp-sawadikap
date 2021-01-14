@@ -132,11 +132,11 @@ function main() {
       root.add(clonedScene);
       scene.add(root);
       root.position.x = (ndx - 3) * 9;
-      root.position.z = (ndx - 20);
+      root.position.z = (ndx - 60);
       root.position.y = -1;
       if(ndx>6){
         root.position.x = (ndx-10) * 9;
-        root.position.z = (ndx+20);
+        root.position.z = (ndx-10);
         root.position.y = -4;
       }
       if(ndx>9){
